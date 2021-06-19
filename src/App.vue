@@ -4,7 +4,10 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <Menu />
     <input type="text" v-model="name" />
-    {{name}}
+    <div v-show="isShow">
+      {{name}}
+    </div>
+    <button @click="() => isShow = !isShow">Click</button>
   </div>
 </template>
 
@@ -16,7 +19,8 @@ export default {
   name: 'App',
   data() {
     return {
-      name: "Vue"
+      name: "Vue",
+      isShow: true
     }
   },
   components: {
