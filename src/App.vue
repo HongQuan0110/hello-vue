@@ -1,69 +1,71 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Menu />
+	<div id="app">
+		<img alt="Vue logo" src="./assets/logo.png">
+		<Menu />
 
-    <!-- Conditional rendering -->
-    <!-- 
-      + v-show: an/hien element theo dieu kien
-      + v-hide: ngc lai
-      + v-if: bien mat/hien thi element theo dieu kien
-      + v-elseif
-      + v-else
-     -->
-    <input type="text" v-model="name" />
-    <div v-show="isShow">
-      {{name}}
-    </div>
-    <button @click="() => isShow = !isShow">
-      <!-- {{isShow ? 'Ẩn' : 'Hiện'}} -->
-      <span v-if="!isShow">Hiện</span>
-      <span v-else>Ẩn</span>
-    </button>
+		<!-- Conditional rendering -->
+		<!-- 
+		+ v-show: an/hien element theo dieu kien
+		+ v-hide: ngc lai
+		+ v-if: bien mat/hien thi element theo dieu kien
+		+ v-elseif
+		+ v-else
+		-->
+		<input type="text" v-model="name" />
+		<div v-show="isShow">
+		{{name}}
+		</div>
+		<button @click="() => isShow = !isShow">
+		<!-- {{isShow ? 'Ẩn' : 'Hiện'}} -->
+		<span v-if="!isShow">Hiện</span>
+		<span v-else>Ẩn</span>
+		</button>
 
-    <!-- Binding value/property/style/class -->
-    <!-- 
-      + v-binding:[tenthuoctinh]="bien"
-      + viet tat : dau 2 cham 
-    -->
-    <div>
-      <input type="text" v-bind:disabled="isDisable" />
-      <button @click="isDisable = !isDisable">Mo/Khoa</button>
-    </div>
-    
-    <h1 :class="{colorRed: selected}">Binding class</h1>
-    <button @click="() => selected = !selected">Click</button>
+		<!-- Binding value/property/style/class -->
+		<!-- 
+		+ v-binding:[tenthuoctinh]="bien"
+		+ viet tat : dau 2 cham 
+		-->
+		<div>
+		<input type="text" v-bind:disabled="isDisable" />
+		<button @click="isDisable = !isDisable">Mo/Khoa</button>
+		</div>
+		
+		<h1 :class="{colorRed: selected}">Binding class</h1>
+		<button @click="() => selected = !selected">Click</button>
 
-    <!-- Event Handler -->
-    <!-- 
-      + v-on:[tensukien]="function()"
-      + v-on viet tat @ 
-      + prevent default event:
-        + huy bo event mac dinh cua element
-    -->
-    <div>
-      <input type="text" v-model="chanel.name">
-      <button v-on:mouseover="chanel.name = 'XYZ'">Click</button>
-      <form action="/abc">
-        <input type="submit" @click.prevent="chanel.name = 'DEF'">
-      </form>
-    </div>
+		<!-- Event Handler -->
+		<!-- 
+		+ v-on:[tensukien]="function()"
+		+ v-on viet tat @ 
+		+ prevent default event:
+			+ huy bo event mac dinh cua element
+		-->
+		<div>
+		<input type="text" v-model="chanel.name">
+		<button v-on:mouseover="chanel.name = 'XYZ'">Click</button>
+		<form action="/abc">
+			<input type="submit" @click.prevent="chanel.name = 'DEF'">
+		</form>
+		</div>
 
-    <!-- ref: Anh xa den chinh elemen - this.$ref.[ten] -->
-    <h2 ref="text">ref</h2>
+		<!-- ref: Anh xa den chinh elemen - this.$ref.[ten] -->
+		<h2 ref="text">ref</h2>
 
-    <!-- List rendering -->
-    <!-- 
-      + v-for
-     -->
-    <div>
-      <input type="text" v-model="newTask">
-      <button @click="addTask" >Add</button>
-      <task v-for="(task, index) in tasks" :key="index" :taskData="task"/>
-    </div>
+		<!-- List rendering -->
+		<!-- 
+		+ v-for
+		-->
+		<div>
+		<input type="text" v-model="newTask">
+		<button @click="addTask" >Add</button>
+		<task v-for="(task, index) in tasks" :key="index" :taskData="task"/>
+		</div>
 
-    <TagSelector />
-  </div>
+		<TagSelector />
+
+		<FilterMoney />
+	</div>
 </template>
 
 <script>
@@ -71,6 +73,7 @@
 import Menu from './components/Menu.vue'
 import Task from './components/Task.vue'
 import TagSelector from './components/TagSelector.vue'
+import FilterMoney from './components/FilterMoney.vue'
 
 export default {
   name: 'App',
@@ -95,7 +98,8 @@ export default {
   components: {
     Menu,
     Task,
-    TagSelector
+    TagSelector,
+    FilterMoney
   },
   // Ham cua vue object
   methods: {
